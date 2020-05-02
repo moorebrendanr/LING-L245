@@ -109,6 +109,10 @@ function apply_tone(word, pattern_str)
 		table.insert(pattern, tone)
 	end
 	
+	if #pattern ~= #syllables then
+		error("Tone pattern must have the same number of tones as the number of syllables in the given word.")
+	end
+	
 	for i, cons in ipairs(consonants) do
 		 --If the syllable is H and has a depressor consonant, and next syllable does not have a depressor consonant
 		if pattern[i] == "H" and dep_table[cons] and not dep_table[consonants[i+1]] then
