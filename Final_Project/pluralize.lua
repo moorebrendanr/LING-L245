@@ -49,6 +49,8 @@ function agglutinate(prefix, stem)
 	if prefix:sub(pre_len) == "n" then
 		if first_letter == "b" or first_letter == "p" or first_letter == "f" or first_letter == "v" then
 			prefix = prefix:gsub("n$", "m")
+		elseif first_letter == "n" or first_letter == "m" or first_letter == "l" then
+			prefix = prefix:sub(1, pre_len-1)
 		end
 
 		for init, changed in pairs(nasal_changes) do
@@ -60,10 +62,6 @@ function agglutinate(prefix, stem)
 	end
 
 	if stem:find("^["..vowels.."]") then
-		prefix = prefix:sub(1, pre_len-1)
-	end
-
-	if prefix:sub(pre_len, pre_len) == "n" and (first_letter == "n" or first_letter == "m" or first_letter == "l") then
 		prefix = prefix:sub(1, pre_len-1)
 	end
 	
